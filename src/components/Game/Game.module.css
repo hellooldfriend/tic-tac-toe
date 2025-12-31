@@ -1,0 +1,179 @@
+.container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Orbitron', 'Rajdhani', sans-serif;
+    color: #e0e0ff;
+}
+
+.title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 20px #00ffff;
+    letter-spacing: 4px;
+}
+
+.turnIndicator {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.turnSymbol {
+    font-size: 3rem;
+    font-weight: bold;
+    animation: pulse 2s infinite;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    width: fit-content;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 20px;
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.3);
+}
+
+.cell {
+    width: 120px;
+    height: 120px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    border: 2px solid transparent;
+}
+
+.cell:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
+}
+
+.symbol {
+    font-size: 5rem;
+    font-weight: bold;
+    opacity: 0;
+    transform: scale(0);
+    animation: appear 0.4s ease-out forwards;
+}
+
+/* Крестик — неоновый синий */
+.x {
+    color: #00ffff;
+    text-shadow:
+        0 0 10px #00ffff,
+        0 0 20px #00ffff,
+        0 0 40px #00ffff,
+        0 0 80px #00ffff;
+}
+
+/* Нолик — неоновый розовый */
+.o {
+    color: #ff00ff;
+    text-shadow:
+        0 0 10px #ff00ff,
+        0 0 20px #ff00ff,
+        0 0 40px #ff00ff,
+        0 0 80px #ff00ff;
+}
+
+/* Анимация появления новой фигуры */
+@keyframes appear {
+    0% {
+        opacity: 0;
+        transform: scale(0) rotate(180deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+    }
+}
+
+/* Анимация исчезновения старой фигуры */
+.fadeOut {
+    animation: disappear 0.6s ease-in forwards;
+}
+
+@keyframes disappear {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0) translateY(-60px);
+    }
+}
+
+/* Пульсация текущего хода */
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.7;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+.winnerOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.winnerText {
+    font-size: 5rem;
+    margin-bottom: 2rem;
+    animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 20px currentColor;
+    }
+
+    to {
+        text-shadow: 0 0 60px currentColor, 0 0 100px currentColor;
+    }
+}
+
+.restartButton {
+    padding: 15px 40px;
+    font-size: 1.5rem;
+    background: transparent;
+    border: 3px solid #00ffff;
+    color: #00ffff;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+}
+
+.restartButton:hover {
+    background: #00ffff;
+    color: #000;
+    box-shadow: 0 0 40px #00ffff;
+    transform: scale(1.1);
+}
