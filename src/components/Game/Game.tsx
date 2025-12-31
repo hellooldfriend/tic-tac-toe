@@ -108,7 +108,7 @@ const Game = () => {
             <h1 className={styles.title}>TIC-TAC-TOE</h1>
 
             <div className={styles.turnIndicator}>
-                <span>Ход:</span>
+                <span>Moves:</span>
                 <div className={`${styles.turnSymbol} ${turn === 'X' ? styles.x : styles.o}`}>
                     {turn === 'X' ? '×' : '○'}
                 </div>
@@ -142,17 +142,17 @@ const Game = () => {
             {winner && (
                 <div className={styles.winnerOverlay}>
                     <div className={`${styles.winnerText} ${winner === 'X' ? styles.x : styles.o}`}>
-                        Победил {winner === 'X' ? '×' : '○'}!
+                        The winner is {winner === 'X' ? '×' : '○'}!
                     </div>
                     <button className={styles.restartButton} onClick={resetGame}>
-                        Играть заново
+                        Play again
                     </button>
                 </div>
             )}
 
             {!winner && (
                 <button className={styles.restartButton} onClick={resetGame} style={{ marginTop: '3rem' }}>
-                    Новая игра
+                    New game
                 </button>
             )}
         </div>
